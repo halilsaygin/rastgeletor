@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXML_OgrenciSecController">
+       <children>
+      <StackPane fx:id="stackpane" layoutY="27.0" prefHeight="385.0" prefWidth="612.0">
+         <children>
+              <Pane fx:id="pn_sec" prefHeight="385.0" prefWidth="612.0">
+                  <children>
+                      <Label layoutX="205.0" layoutY="28.0" prefHeight="48.0" prefWidth="203.0" text="İşte Seçilen! ">
+                          <font>
+                              <Font name="Calibri Bold" size="36.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="secilen_isim" alignment="CENTER" layoutX="58.0" layoutY="86.0" prefHeight="48.0" prefWidth="496.0" style="-fx-border-color: black; -fx-background-color: #EAEDED;" text="Henüz Kimse Seçilmedi" textAlignment="CENTER">
+                          <font>
+                              <Font size="32.0" />
+                          </font>
+                      </Label>
+                      <Button fx:id="btn_sec" layoutX="260.0" layoutY="168.0" mnemonicParsing="false" onAction="#sec_ogrenci" prefHeight="48.0" prefWidth="94.0" style="-fx-background-color: #ABEBC6;" styleClass="buttons" stylesheets="@ui_styles.css" text="SEÇ">
+                          <font>
+                              <Font name="Arial Bold" size="27.0" />
+                          </font>
+                      </Button>
+                  <HBox alignment="CENTER" layoutX="58.0" layoutY="304.0" prefHeight="32.0" prefWidth="496.0">
+                     <children>
+                        <RadioButton fx:id="rdbtn_tum_sinif" mnemonicParsing="false" onAction="#ayarla_cinsiyet" prefHeight="21.0" prefWidth="127.0" selected="true" text="Tüm Sınıf">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="secim_kapsam" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rdbtn_sadece_kizlar" mnemonicParsing="false" onAction="#ayarla_cinsiyet" prefHeight="25.0" prefWidth="160.0" text="Sadece Kızlar" toggleGroup="$secim_kapsam">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="rdbtn_sadece_erkekler" mnemonicParsing="false" onAction="#ayarla_cinsiyet" prefHeight="25.0" prefWidth="178.0" text="Sadece Erkekler" toggleGroup="$secim_kapsam">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </HBox>
+                  </children>
+              </Pane>
+            <Pane fx:id="pn_sinif_liste" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <TextField fx:id="txtf_ad_soyad" layoutX="32.0" layoutY="23.0" promptText="Öğrenci Ad Soyad" />
+                  <ChoiceBox fx:id="chbx_cinsiyet" layoutX="32.0" layoutY="67.0" prefHeight="31.0" prefWidth="94.0" />
+                  <Button fx:id="btn_ogrenci_ekle" layoutX="32.0" layoutY="125.0" mnemonicParsing="false" onAction="#ekle_ogrenci" prefHeight="32.0" prefWidth="94.0" style="-fx-background-color: #ABEBC6;" styleClass="buttons" stylesheets="@ui_styles.css" text="EKLE">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="tblview_ogrenci_liste" layoutX="248.0" layoutY="23.0" prefHeight="249.0" prefWidth="342.0">
+                    <columns>
+                        <TableColumn fx:id="idSutunu" prefWidth="36.0" text="ID" />
+                      <TableColumn fx:id="adSoyadSutunu" prefWidth="219.0" text="Ad Soyad" />
+                      <TableColumn fx:id="cinsiyetSutunu" prefWidth="86.0" text="Cinsiyet" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+        <MenuBar prefHeight="32.0" prefWidth="612.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Yeni">
+                    <items>
+                        <MenuItem fx:id="mnItem_eksilen_liste" mnemonicParsing="false" onAction="#liste_baslat" text="Eksilen Listeli Seçme Başlat" />
+                  <MenuItem fx:id="mnItem_sabit_liste" mnemonicParsing="false" onAction="#liste_baslat" text="Sabit Listeli Seçme Başlat" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Öğrenci">
+                    <items>
+                        <MenuItem fx:id="mnItem_sinif_liste" mnemonicParsing="false" onAction="#set_sinif_liste" text="Sınıf Listesi Ayarla" />
+                  <MenuItem fx:id="mnItem_liste_temizle" mnemonicParsing="false" onAction="#liste_temizle" text="Tüm Kayıtları Sil" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>
