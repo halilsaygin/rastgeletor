@@ -1,13 +1,25 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 19 Ara 2023, 21:25:11
-    Author     : C-MONSTER
-*/
+.button-giris-ekran {
+    -fx-background-color: #85c1e9; /* Buton arka plan rengi */
+    -fx-text-fill: black; /* Buton üzerindeki yazı rengi */
+    -fx-font-size: 28px; /* Yazı boyutu */
+    -fx-background-radius: 5px; /* Buton köşe yuvarlama */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 1); /* Gölge efekti */
+}
 
-.buttons:hover {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 0);
+.button-giris-ekran:hover {
+    -fx-border-color: black; /* Fare üzerine geldiğinde kenarlık rengi */
+    -fx-border-width: 2px; /* Fare üzerine geldiğinde kenarlık kalınlığı */
+    -fx-border-style: solid; /* Fare üzerine geldiğinde kenarlık stili */
+    -fx-background-color: #aed6f1;
+    -fx-border-radius: 5px;
+}
+
+.button-giris-ekran:pressed {
+    -fx-background-color: #1c598a; /* Buton basıldığında arka plan rengi */
+}
+
+.font-awesome {
+    -fx-font-family: 'FontAwesome';
+    -fx-font-size:24px;
 }
 

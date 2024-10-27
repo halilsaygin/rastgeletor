@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import java.io.IOException;
@@ -12,17 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author C-MONSTER
- */
 public class SceneController {
 
     private static SceneController instance;
     private final Stage stage = FXMain._primaryStage;
     private final double DURATION = 0.8;
-    private final String ANA_SAHNE_FXML = "MainFXML.fxml";
-    private final String ANA_SAHNE_STIL_SAYFA = "uiStyles.css";
+    private final String ANA_SAHNE_FXML = "/main/fxmlfiles/FXML_GirisEkran.fxml";
+    private final String ANA_SAHNE_STIL_SAYFA = "ui_styles.css";
 
     public static SceneController getInstance() {
         if (instance == null) {

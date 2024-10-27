@@ -4,26 +4,15 @@
  */
 package main.controllers;
 
-import java.io.IOException;
 import java.net.URL;
-
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import main.SceneController;
 
+public class FXML_OgrenciListController implements Initializable {
 
-public class FXML_OgrenciSecController implements Initializable {
-   
-    @FXML
-    public void anaSahneAc() throws IOException{
-      SceneController controller = SceneController.getInstance();
-        controller.anaSahne_Ac();
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
-    }
-   
+             // TODO
+    }    
+    
 }
