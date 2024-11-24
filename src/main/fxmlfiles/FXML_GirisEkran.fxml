@@ -15,7 +15,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Öğrenci">
                <items>
-                  <MenuItem fx:id="mnItem_sinif_liste" mnemonicParsing="false" text="Sınıf Listesi Ayarla" />
+                  <MenuItem fx:id="mnItem_sinif_liste" mnemonicParsing="false" onAction="#ogrenciListEkranAc" text="Sınıf Listesi Ayarla" />
                   <MenuItem fx:id="mnItem_liste_temizle" mnemonicParsing="false" text="Tüm Kayıtları Sil" />
                </items>
             </Menu>

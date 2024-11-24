@@ -17,32 +17,31 @@
 
 <AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FXML_OgrenciListController">
    <children>
-      <Pane fx:id="pn_sinif_liste" layoutX="-14.0" prefHeight="412.0" prefWidth="612.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane fx:id="pn_sinif_liste" layoutX="-14.0" prefHeight="412.0" prefWidth="612.0" style="-fx-background-color: #fef5e7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
             <ImageView fx:id="imageview_home" fitHeight="45.0" fitWidth="46.0" layoutX="11.0" layoutY="357.0" onMouseClicked="#anaSahneAc" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Tamamlanmis_Projeler/Sinif_Arti_Eksi/Sinif_Arti_Eksi/src/res/home.png" />
+                  <Image url="@../../res/home.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtf_ad_soyad" layoutX="11.0" layoutY="51.0" prefHeight="25.0" prefWidth="243.0" promptText="Öğrenci Ad Soyad" />
-            <Button fx:id="btn_ogrenci_ekle" layoutX="83.0" layoutY="131.0" mnemonicParsing="false" onAction="#ekle_ogrenci" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #ABEBC6;" styleClass="buttons" text="EKLE">
+            <TextField fx:id="txtf_ad_soyad" layoutX="11.0" layoutY="44.0" prefHeight="25.0" prefWidth="249.0" promptText="Öğrenci Ad Soyad" />
+            <Button fx:id="btn_ogrenci_ekle" layoutX="83.0" layoutY="124.0" mnemonicParsing="false" onAction="#ekle_ogrenci" prefHeight="41.0" prefWidth="67.0" style="-fx-background-color: white;" styleClass="button-onceki-sonraki" stylesheets="@../ui_styles.css" text="EKLE">
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <TableView fx:id="tblview_ogrenci_liste" layoutX="267.0" layoutY="7.0" prefHeight="398.0" prefWidth="339.0">
+            <TableView fx:id="tblview_ogrenci_liste" layoutX="267.0" layoutY="11.0" prefHeight="391.0" prefWidth="333.0">
                <columns>
-                  <TableColumn fx:id="idSutunu" prefWidth="36.0" text="ID" />
-                  <TableColumn fx:id="adSoyadSutunu" prefWidth="219.0" text="Ad Soyad" />
-                  <TableColumn fx:id="cinsiyetSutunu" prefWidth="86.0" text="Cinsiyet" />
+                  <TableColumn fx:id="adSoyadSutunu" prefWidth="239.0" text="Ad Soyad" />
+                  <TableColumn fx:id="cinsiyetSutunu" prefWidth="93.0" text="Cinsiyet" />
                </columns>
             </TableView>
-            <HBox layoutX="56.0" layoutY="87.0" prefHeight="25.0" prefWidth="154.0" spacing="20.0">
+            <HBox layoutX="51.0" layoutY="83.0" prefHeight="25.0" prefWidth="154.0" spacing="20.0">
                <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Erkek">
+                  <RadioButton fx:id="radio_cinsiyetErkek" mnemonicParsing="false" selected="true" text="Erkek">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
@@ -50,16 +49,26 @@
                         <ToggleGroup fx:id="cinsiyet" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Kız" toggleGroup="$cinsiyet">
+                  <RadioButton fx:id="radio_cinsiyetKiz" mnemonicParsing="false" text="Kız" toggleGroup="$cinsiyet">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>
                   </RadioButton>
                </children>
             </HBox>
-            <Label layoutX="76.0" layoutY="20.0" prefHeight="25.0" prefWidth="99.0" text="Ad Soyad">
+            <Label layoutX="76.0" layoutY="12.0" prefHeight="25.0" prefWidth="99.0" text="Ad Soyad">
                <font>
                   <Font name="Verdana" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_sil" layoutX="213.0" layoutY="362.0" mnemonicParsing="false" onAction="#sil_ogrenci" prefHeight="33.0" prefWidth="45.0" style="-fx-background-color: white;" styleClass="button-onceki-sonraki" stylesheets="@../ui_styles.css" text="Sil" visible="false">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label fx:id="lbl_durum" alignment="CENTER" layoutX="10.0" layoutY="261.0" prefHeight="25.0" prefWidth="249.0" text="durum label" visible="false">
+               <font>
+                  <Font name="Verdana" size="18.0" />
                </font>
             </Label>
          </children>

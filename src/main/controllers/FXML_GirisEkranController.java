@@ -30,6 +30,12 @@ public class FXML_GirisEkranController implements Initializable {
         sahneGecisiYap("FXML_OgrenciSec.fxml");
     }
     
+    // Öğrenci listesi ekranını açar.
+    public void ogrenciListEkranAc(){
+        System.out.println("öğrenci listesi ekranı tıklandı");
+        sahneGecisiYap("FXML_OgrenciList.fxml");
+    }
+    
     public void sahneGecisiYap(String sahneAdi) {
         try {
             switch (sahneAdi) {
