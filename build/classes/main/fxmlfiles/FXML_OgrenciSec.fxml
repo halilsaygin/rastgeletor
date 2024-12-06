@@ -23,7 +23,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Pane fx:id="pn_sec" layoutY="34.0" prefHeight="386.0" prefWidth="612.0" style="-fx-background-color: #f4ecf7;">
+        <Pane fx:id="pn_sec" layoutY="26.0" prefHeight="386.0" prefWidth="612.0" style="-fx-background-color: #f4ecf7;">
             <children>
                 <Label layoutX="207.0" layoutY="61.0" prefHeight="48.0" prefWidth="203.0" text="İşte Seçilen! ">
                     <font>

@@ -10,10 +10,11 @@ public class DialogSelectRandomOptions  {
     Stage parentStage;
     String secilenListeModu;
     String secilenCinsiyetModu;
+    
     public DialogSelectRandomOptions(Stage parentStage){
         this.parentStage = parentStage;
-        this.secilenListeModu = "Eksilen Liste";
-        this.secilenCinsiyetModu = "Tüm Sınıf";
+        this.secilenListeModu = "azalan_liste";
+        this.secilenCinsiyetModu = "tamami";
     }
    
     public void showCustomDialog() {
@@ -78,8 +79,11 @@ public class DialogSelectRandomOptions  {
        
         confirmButton.setOnAction(event -> {
             // Seçimleri logla
-            this.secilenListeModu = ((RadioButton) listTypeGroup.getSelectedToggle()).getText();
-           this.secilenCinsiyetModu= ((RadioButton) genderGroup.getSelectedToggle()).getText();
+            String secilenListeModu = ((RadioButton) listTypeGroup.getSelectedToggle()).getText();
+            ayarlaListeModu(secilenListeModu);
+            
+            String secilenCinsiyetModu= ((RadioButton) genderGroup.getSelectedToggle()).getText();
+            ayarlaCinsiyetModu(secilenCinsiyetModu);
            
             dialogStage.close(); // Diyalog kapat
         });
@@ -95,6 +99,17 @@ public class DialogSelectRandomOptions  {
         Scene dialogScene = new Scene(dialogLayout, 300, 320);
         dialogStage.setScene(dialogScene);
         dialogStage.showAndWait(); // Diyalog bloklanır
+    }
+    
+     private void  ayarlaListeModu(String listeMod){
+        if (listeMod.equals("Eksilen Liste")) this.secilenListeModu="eksilen_liste";
+        else this.secilenListeModu="sabit_liste";
+    }
+    
+    private void ayarlaCinsiyetModu(String cinsiyetMod){
+        if (cinsiyetMod.equals("Tüm Sınıf")) this.secilenCinsiyetModu="tamami";
+        else if (cinsiyetMod.equals("Sadece Erkekler")) this.secilenCinsiyetModu="erkek";
+        else this.secilenCinsiyetModu="kiz";
     }
     
     public String getSecilenListeModu() {

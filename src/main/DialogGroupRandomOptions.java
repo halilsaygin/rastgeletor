@@ -7,12 +7,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class DialogGroupRandomOptions {
-     Stage parentStage;
+    Stage parentStage;
     int grupKisiSayisi;
+    int grupSayisi;
 
     public DialogGroupRandomOptions(Stage parentStage) {
         this.parentStage = parentStage;
         this.grupKisiSayisi = 2; // Varsayılan grup büyüklüğü
+        this.grupSayisi = 2; // Varsayılan grup sayısı
     }
 
     public void showCustomDialog() {
@@ -29,18 +31,49 @@ public class DialogGroupRandomOptions {
         }
 
         // Bilgilendirici bir Label
-        Label infoLabel = new Label("Kaç kişilik gruplar oluşturulsun?");
+        Label infoLabel = new Label("Grup Oluşturma Seçenekleri");
         infoLabel.setStyle("-fx-font-size: 18px;");
+
+        // RadioButtons ve ToggleGroup
+        ToggleGroup toggleGroup = new ToggleGroup();
+        RadioButton byGroupSizeRadio = new RadioButton("Gruptaki kişi sayısı ile");
+        RadioButton byGroupCountRadio = new RadioButton("Grup sayısı ile");
+        byGroupSizeRadio.setStyle("-fx-font-size: 14px;");
+         byGroupCountRadio.setStyle("-fx-font-size: 14px;");
+        byGroupSizeRadio.setToggleGroup(toggleGroup);
+        byGroupCountRadio.setToggleGroup(toggleGroup);
+        byGroupCountRadio.setSelected(true); // Varsayılan seçim
 
         // Grup büyüklüğü için bir TextField
         TextField groupSizeField = new TextField(String.valueOf(this.grupKisiSayisi)); // Varsayılan değer
         groupSizeField.setPromptText("Örn: 3");
         groupSizeField.setStyle("-fx-font-size: 18px; -fx-alignment: center;");
+        groupSizeField.setDisable(true);
         groupSizeField.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Kullanıcı yalnızca sayısal değerler girebilir
             if (!newValue.matches("\\d*")) {
                 groupSizeField.setText(newValue.replaceAll("[^\\d]", ""));
             }
+        });
+
+        // Grup sayısı için bir TextField
+        TextField groupCountField = new TextField(String.valueOf(this.grupSayisi)); // Varsayılan değer
+        groupCountField.setPromptText("Örn: 5");
+        groupCountField.setStyle("-fx-font-size: 18px; -fx-alignment: center;");
+        groupCountField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                groupCountField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+
+        // RadioButton'ların TextField'leri etkinleştirme/deaktif etme işlevi
+        byGroupSizeRadio.setOnAction(event -> {
+            groupSizeField.setDisable(false);
+            groupCountField.setDisable(true);
+        });
+
+        byGroupCountRadio.setOnAction(event -> {
+            groupSizeField.setDisable(true);
+            groupCountField.setDisable(false);
         });
 
         // Tamam Butonu
@@ -52,34 +85,48 @@ public class DialogGroupRandomOptions {
                         "-fx-border-color: black;" +
                         "-fx-border-width: 2px;" +
                         "-fx-border-radius: 10px;");
+        
         confirmButton.setOnAction(event -> {
-            // Grup büyüklüğünü al
-            String input = groupSizeField.getText();
-            if (!input.isEmpty()) {
-                try {
-                    this.grupKisiSayisi = Integer.parseInt(input);
-                } catch (NumberFormatException e) {
-                    // Geçerli bir sayı değilse varsayılan değeri kullan
-                    this.grupKisiSayisi = 2;
+            if (byGroupSizeRadio.isSelected()) { // Gruptaki kişi sayısı seçilmişse
+                String input = groupSizeField.getText();
+                if (!input.isEmpty()) {
+                    try {
+                        this.grupSayisi = 0;
+                        this.grupKisiSayisi = Integer.parseInt(input);
+                    } catch (NumberFormatException e) {
+                        this.grupKisiSayisi = 2;
+                    }
+                }
+            } else if (byGroupCountRadio.isSelected()) { // Grup sayısı seçilmişse
+                String input = groupCountField.getText();
+                if (!input.isEmpty()) {
+                    try {
+                        this.grupKisiSayisi = 0;
+                        this.grupSayisi = Integer.parseInt(input);
+                    } catch (NumberFormatException e) {
+                        this.grupSayisi = 2;
+                    }
                 }
             }
             dialogStage.close(); // Diyalog kapat
         });
 
-        // Buton için HBox: Yatayda ortalamak için
-        HBox buttonBox = new HBox(confirmButton);
-        buttonBox.setStyle("-fx-alignment: center;");
-
         // Layout ayarları
-        VBox dialogLayout = new VBox(15, infoLabel, groupSizeField, buttonBox);
+        VBox radioButtonBox = new VBox(10, byGroupCountRadio, groupCountField, byGroupSizeRadio, groupSizeField );
+        radioButtonBox.setStyle("-fx-alignment: center-left;");
+        VBox dialogLayout = new VBox(15, infoLabel, radioButtonBox, confirmButton);
         dialogLayout.setStyle("-fx-padding: 15; -fx-alignment: center;");
 
-        Scene dialogScene = new Scene(dialogLayout, 300, 200);
+        Scene dialogScene = new Scene(dialogLayout, 400, 300);
         dialogStage.setScene(dialogScene);
         dialogStage.showAndWait(); // Diyalog bloklanır
     }
 
     public int getGrupKisiSayisi() {
-        return grupKisiSayisi;
+        return this.grupKisiSayisi;
+    }
+
+    public int getGrupSayisi() {
+        return this.grupSayisi;
     }
 }

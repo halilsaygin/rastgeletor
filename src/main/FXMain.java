@@ -20,6 +20,7 @@ public class FXMain extends Application {
         scene.getStylesheets().add(css) ;
         
         _primaryStage.setScene(scene);
+        _primaryStage.setResizable(false);
         Image icon = new Image(getClass().getResourceAsStream("uyg_icon.png"));
         _primaryStage.getIcons().add(icon);
         _primaryStage.show();

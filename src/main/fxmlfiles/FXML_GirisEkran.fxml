@@ -16,7 +16,7 @@
             <Menu mnemonicParsing="false" text="Öğrenci">
                <items>
                   <MenuItem fx:id="mnItem_sinif_liste" mnemonicParsing="false" onAction="#ogrenciListEkranAc" text="Sınıf Listesi Ayarla" />
-                  <MenuItem fx:id="mnItem_liste_temizle" mnemonicParsing="false" text="Tüm Kayıtları Sil" />
+                  <MenuItem fx:id="mnItem_liste_temizle" mnemonicParsing="false" onAction="#tumKayitlariSil" text="Tüm Kayıtları Sil" />
                </items>
             </Menu>
          </menus>

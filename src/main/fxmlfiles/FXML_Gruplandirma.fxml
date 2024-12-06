@@ -24,7 +24,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Pane layoutY="27.0" prefHeight="382.0" prefWidth="612.0" style="-fx-background-color: #e8f8f5;">
+      <Pane layoutY="28.0" prefHeight="382.0" prefWidth="612.0" style="-fx-background-color: #e8f8f5;">
          <children>
             <Label fx:id="label_grupNo" alignment="CENTER" layoutX="263.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="86.0" text="1.Grup" textAlignment="CENTER">
                <font>
@@ -52,7 +52,7 @@
             <ListView fx:id="listvw_grup" layoutX="139.0" layoutY="36.0" prefHeight="337.0" prefWidth="335.0" />
          </children>
       </Pane>
-      <ImageView fx:id="imageview_home" fitHeight="45.0" fitWidth="46.0" layoutX="9.0" layoutY="357.0" onMouseClicked="#anaSahneAc" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageview_home" fitHeight="45.0" fitWidth="46.0" layoutX="9.0" layoutY="361.0" onMouseClicked="#anaSahneAc" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../res/home.png" />
          </image>
