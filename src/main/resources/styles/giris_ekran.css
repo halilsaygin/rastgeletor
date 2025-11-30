@@ -1,0 +1,21 @@
+/* JavaFX CSS - Giriş Ekranı Stilleri */
+
+.button-giris-ekran {
+    -fx-background-color: #85c1e9;
+    -fx-text-fill: black;
+    -fx-font-size: 28px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 1);
+}
+
+.button-giris-ekran:hover {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-background-color: #aed6f1;
+    -fx-border-radius: 5px;
+}
+
+.button-giris-ekran:pressed {
+    -fx-background-color: #1c598a;
+}

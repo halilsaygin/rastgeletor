@@ -1,0 +1,94 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'eclipse'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
+    id 'org.beryx.jlink' version '3.0.1'
+}
+
+group = 'com.rastgeletor'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_19
+    targetCompatibility = JavaVersion.VERSION_19
+}
+
+javafx {
+    version = "19"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.base']
+}
+
+dependencies {
+    // SQLite JDBC
+    implementation 'org.xerial:sqlite-jdbc:3.46.1.0'
+    
+    // Explicitly add JavaFX dependencies for IDE recognition
+    implementation 'org.openjfx:javafx-controls:19'
+    implementation 'org.openjfx:javafx-fxml:19'
+    implementation 'org.openjfx:javafx-graphics:19'
+    implementation 'org.openjfx:javafx-base:19'
+}
+
+application {
+    mainModule = 'com.rastgeletor'
+    mainClass = 'main.FXMain'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+// Debug mode için JVM argümanları
+run {
+    systemProperty 'debug', System.getProperty('debug', 'false')
+    systemProperty 'file.encoding', 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'main.FXMain',
+            'Implementation-Version': version,
+            'Implementation-Title': 'Rastgeletör - Sınıf Yönetim Aracı'
+        )
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jlink {
+    options = ['--strip-debug', '--compress=zip-6', '--no-header-files', '--no-man-pages']
+    
+    launcher {
+        name = 'Rastgeletor'
+    }
+    
+    jpackage {
+        imageName = 'Rastgeletor'
+        appVersion = '1.0.0'
+        skipInstaller = true
+        
+        // Uygulama ikonu (PNG kullanılabilir, jpackage otomatik çevirir)
+        imageOptions = [
+            '--icon', 'src/main/resources/icons/uyg_icon.png',
+            '--vendor', 'Rastgeletor',
+            '--description', 'Sınıf Yönetim Aracı - Rastgele Öğrenci Seçme ve Gruplama',
+            '--app-version', '1.0.0'
+        ]
+    }
+}

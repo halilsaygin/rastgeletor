@@ -1,0 +1,8 @@
+/* JavaFX CSS - Gruplandırma Ekranı Stilleri */
+
+.button-onceki-sonraki {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
