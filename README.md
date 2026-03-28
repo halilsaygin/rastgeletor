@@ -1,89 +1,97 @@
-# Rastgeletör - Sınıf Yönetim Aracı
+# Rastgeletör - Sınıf Öğrenci Seçme ve Gruplama Aracı
 
-Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış, öğretmenlerin sınıf içi aktivitelerini kolaylaştıran bir masaüstü uygulamasıdır.
+Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış, öğretmenlerin sınıf içi öğrenci seçme ve gruplama aktivitelerini kolaylaştıran modern ve kullanışlı bir masaüstü uygulamasıdır.
+
+<div align="center">
+  <img src="screenshoots/rastgeletor_ekran.png" width="49%" alt="Rastgeletör Ekranı" />
+  <img src="screenshoots/ogrenci_listesi_ekrani.png" width="49%" alt="Öğrenci Listesi" />
+</div>
+
+> **Not:** Ekran görüntülerinde yer alan isimler test amaçlı tamamen rastgele oluşturulmuş olup, gerçek kişilerle hiçbir ilgisi bulunmamaktadır.
 
 ## 🎯 Özellikler
 
-- **Rastgele Öğrenci Seçimi**: Sınıftan adil ve rastgele öğrenci seçimi
+- **Rastgele Öğrenci Seçimi**: Sınıftan adil ve rastgele öğrenci seçimi (Monochrome minimal arayüz)
 - **Grup Oluşturma**: İstediğiniz grup sayısına veya grup başına düşen kişi sayısına göre otomatik gruplama
 - **Cinsiyet Filtresi**: Tüm sınıf, sadece kızlar veya sadece erkekler arasından seçim
 - **Liste Modları**: Eksilen liste (seçilen öğrenci tekrar seçilmez) veya sabit liste
 - **Öğrenci Yönetimi**: Kolay öğrenci ekleme, silme ve listeleme
 
-## 📥 Kurulum ve Kullanım
+---
 
-### Son Kullanıcılar İçin
+## 📸 Uygulama Arayüzü Detayları
 
-1. Projeyi indirin veya klonlayın
-2. Java 19 veya üzeri yüklü olduğundan emin olun
-3. Komut satırından şu komutu çalıştırın:
-   ```bash
-   gradle run
-   ```
-4. Uygulama açıldığında:
-   - İlk olarak "Öğrenci" menüsünden "Sınıf Listesi Ayarla" seçeneğine tıklayın
-   - Öğrenci adlarını ve cinsiyetlerini ekleyin
-   - Ana ekrandan "Rastgeletör" veya "Gruplayıcı" seçeneklerini kullanın
+### Seçim Ayarları Ekranı
+<div align="center">
+  <img src="screenshoots/rastgeletor_secim_ayarlari.png" width="80%" alt="Seçim Ayarları">
+</div>
 
-### Geliştiriciler İçin
+*Öğretmenler için hızlı ve kolay erişilebilen, göz yormayan ayarlar penceresi.*
 
-**Gereksinimler:**
-- Java 19+
-- Gradle 7.0+
+### Dinamik Grup Oluşturucu (Gruplayıcı)
+<div align="center">
+  <img src="screenshoots/gruplayici_ekrani.png" width="80%" alt="Gruplayıcı Ekranı">
+</div>
 
-**Projeyi Çalıştırma:**
-```bash
-# Projeyi derle
-gradle build
+*Girilen kotalara göre adil ve rastgele üretilmiş optimum sınıf grupları.*
 
-# Uygulamayı çalıştır
-gradle run
-
-# Temizlik
-gradle clean
-```
-
-**Proje Yapısı:**
-```
-src/
-├── main/
-│   ├── java/main/          # Java kaynak kodları
-│   │   ├── controllers/    # FXML controller sınıfları
-│   │   ├── daos/          # Veritabanı erişim katmanı
-│   │   └── services/      # İş mantığı katmanı
-│   └── resources/         # FXML, CSS, resim dosyaları
-```
+---
 
 ## 🎮 Kullanım Kılavuzu
 
-### Öğrenci Listesi Oluşturma
-1. Ana ekranda "Öğrenci" menüsünden "Sınıf Listesi Ayarla"yı seçin
-2. Öğrenci adını girin, cinsiyeti seçin ve "EKLE" butonuna tıklayın
-3. Listeyi tamamladıktan sonra ev ikonuna tıklayarak ana ekrana dönün
+### 1- Öğrenci Listesi Oluşturma
+1. Ana ekranda "Öğrenci Listesi" butonuna tıklayıp sınıf panosuna girin.
+2. Ad soyad ve cinsiyet belirterek **"EKLE"** butonuna tıklayın.
+3. Listeyi tamamladığınızda sol üstteki okla geri dönebilir veya verileri temizleyebilirsiniz.
 
-### Rastgele Öğrenci Seçme
-1. Ana ekranda "🎲 Rastgeletör" butonuna tıklayın
-2. "Yeni" menüsünden seçim ayarlarını yapın:
-   - Liste modu (Eksilen/Sabit)
-   - Cinsiyet filtresi (Tüm Sınıf/Kızlar/Erkekler)
-3. Ortadaki 🔄 butonuna tıklayarak rastgele öğrenci seçin
+### 2- Rastgele Öğrenci Seçme (Çekiliş)
+1. Rastgeletör panosundan **Seçim Ayarları**na tıklayın.
+2. Sabit mi yoksa Eksilen liste mantığı ile mi çekiliş yapacağınızı ve kız/erkek kısıtlamalarını belirleyin.
+3. Klavyeden **Enter** tuşuna veya ekrandaki kocaman zara (⚄) tıklayarak seçimi gerçekleştirin!
 
-### Grup Oluşturma
-1. Ana ekranda "👥 Gruplayıcı" butonuna tıklayın
-2. "Yeni" menüsünden "Yeni Gruplandırma"yı seçin
-3. Gruplama yöntemini belirleyin:
-   - Grup sayısı ile (örn: 5 grup)
-   - Gruptaki kişi sayısı ile (örn: her grupta 4 kişi)
-4. ◀ ▶ butonlarıyla gruplar arasında gezinin
+### 3- Grup Oluşturma
+1. Sağ üstte yer alan "Gruplayıcı" sekmesine geçin.
+2. "Yeni Gruplandırma" diyerek sınıfı kaça böleceğinizi belirleyin.
+3. Sağ ve sol oklarla oluşan otomatik grupları inceleyin.
 
-## 🗄️ Veritabanı
+---
 
-Uygulama SQLite kullanır. Öğrenci verileri `ogrenciler.db` dosyasında saklanır ve otomatik olarak oluşturulur.
+## 📦 AppImage Olarak Dağıtım (Linux)
+
+Uygulamanın işletim sistemine tam uyumlu bir `.AppImage` haline getirilmesi için özel `build-appimage.sh` betiği mevcuttur. GNOME ve diğer masaüstü birimlerine (Dock) uygun yapılandırmalar içerir.
+
+### Adımlar
+
+```bash
+# Proje dizininde özel betiği çalıştırarak imajı derleyin
+chmod +x build-appimage.sh
+./build-appimage.sh
+
+# Oluşan AppImage'ı doğrudan çalıştırın
+./Rastgeletor-1.0.0-x86_64.AppImage
+```
+> **Not:** Sisteminizde FUSE yüklü değilse alternatif olarak `./Rastgeletor-1.0.0-x86_64.AppImage --appimage-extract-and-run` bayrağı ile çalıştırabilirsiniz.
+
+## 🛠 Geliştiriciler İçin
+
+**Gereksinimler:**
+- JDK 21+
+- Gradle 8.5+
+
+**Projeyi Çalıştırma:**
+```bash
+# Kodu direkt JetBrains Compose Test ortamında çalıştırır
+gradle run
+```
+
+## 🗄️ Veritabanı Mimarisi
+Uygulama `SQLite` kullanır. Standart best-practice politikasını güderek uygulamanın kurulu olduğu yere rastgele çöp dosya bırakmaz. Veriler işletim sisteminin kendisine ait "Application Data" dizininde güvenle barınır:
+- **Windows:** `%APPDATA%\Rastgeletor\ogrenciler.db`
+- **Linux (WSL):** `~/.local/share/Rastgeletor/ogrenciler.db`
+
+## 🧸 İkon Katkısı
+Uygulamanın simgeleri Flaticon'dan alınmıştır.  
+<a href="https://www.flaticon.com/free-icons/gaming" title="gaming icons">Gaming icons created by Smashicons - Flaticon</a>
 
 ## 📝 Lisans
-
-Bu proje eğitim amaçlı geliştirilmiştir.
-
-## 🤝 Katkıda Bulunma
-
-Projeyi fork'layıp geliştirmeler yapabilir, pull request gönderebilirsiniz.
+Bu proje eğitim amaçlı geliştirilmiş olup açık kaynaklıdır.

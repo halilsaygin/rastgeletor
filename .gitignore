@@ -3,7 +3,10 @@
 build/
 !gradle/wrapper/gradle-wrapper.jar
 
-# IDE
+# Kotlin
+.kotlin/
+
+# IDE / Editörler
 .idea/
 .vscode/
 *.iml
@@ -14,17 +17,23 @@ build/
 .project
 bin/
 
-# OS
+# İşletim Sistemi Bağımlılıkları ve Çöpler
 .DS_Store
 Thumbs.db
+*.log
+ErrorLog.txt
 
-# Database
+# Derleme Çıktıları
+*.AppImage
+*.exe
+*.msi
+*.deb
+*.rpm
+
+# Veritabanı ve Çalışma Zamanı (Eski Sürümler İçin)
 ogrenciler.db
 *.db
+*.sqlite
 
-# Logs
-*.log
-
-ErrorLog.txt
+# Eskiden Kalan Gereksiz Dosyalar
 build-installer.bat
-

@@ -1,0 +1,64 @@
+========================================
+ RASTGELETÖR - KOMUTLAR
+========================================
+
+--- GELİŞTİRME ---
+
+Çalıştır (Windows):
+  .\gradlew.bat run
+
+Çalıştır (Linux):
+  ./gradlew run
+
+Derle:
+  .\gradlew.bat build        (Windows)
+  ./gradlew build            (Linux)
+
+Temizle:
+  .\gradlew.bat clean        (Windows)
+  ./gradlew clean            (Linux)
+
+
+--- DEPLOY: WINDOWS ---
+
+MSI installer:
+  .\gradlew.bat packageMsi
+  Çıktı: build\compose\binaries\main\msi\
+
+EXE installer:
+  .\gradlew.bat packageExe
+  Çıktı: build\compose\binaries\main\exe\
+
+Taşınabilir dizin (kurulum gerektirmez):
+  .\gradlew.bat createDistributable
+  Çıktı: build\compose\binaries\main\app\Rastgeletor\
+
+
+--- DEPLOY: LINUX ---
+
+Deb paketi (Ubuntu/Debian):
+  ./gradlew packageDeb
+  Çıktı: build/compose/binaries/main/deb/
+
+RPM paketi (Fedora/RHEL):
+  ./gradlew packageRpm
+  Çıktı: build/compose/binaries/main/rpm/
+
+Taşınabilir dizin (kurulum gerektirmez):
+  ./gradlew createDistributable
+  Çıktı: build/compose/binaries/main/app/Rastgeletor/
+
+WSL'de AppImage oluşturmak için:
+cd /mnt/d/PROJELER/Java_Projeler/Rastgeletor
+./build-appimage.sh
+çalıştırmak için: ./Rastgeletor-1.0.0-x86_64.AppImage
+
+Debian paketini kurmak için:
+./gradlew packageReleaseDeb
+
+
+--- NOTLAR ---
+
+- JDK 21 gereklidir.
+- Linux paketleme için dpkg (deb) veya rpm araçları kurulu olmalıdır.
+- Tüm deploy işlemleri sadece Gradle görevleriyle yapılır, harici script gerekmez.
