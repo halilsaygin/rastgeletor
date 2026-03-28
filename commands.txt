@@ -51,7 +51,7 @@ Taşınabilir dizin (kurulum gerektirmez):
 WSL'de AppImage oluşturmak için:
 cd /mnt/d/PROJELER/Java_Projeler/Rastgeletor
 ./build-appimage.sh
-çalıştırmak için: ./Rastgeletor-1.0.0-x86_64.AppImage
+çalıştırmak için: ./rastgeletor-1.0.0-x86_64.AppImage --appimage-extract-and-run
 
 Debian paketini kurmak için:
 ./gradlew packageReleaseDeb

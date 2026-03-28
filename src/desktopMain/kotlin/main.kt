@@ -1,10 +1,12 @@
+@file:JvmName("Rastgeletor")
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.res.loadImageBitmap
-import androidx.compose.ui.res.useResource
+import org.jetbrains.compose.resources.painterResource
+import com.rastgeletor.Res
+import com.rastgeletor.app_icon
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
@@ -52,7 +54,7 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = "Rastgeletör",
-        icon = BitmapPainter(useResource("app_icon.png", ::loadImageBitmap)),
+        icon = painterResource(Res.drawable.app_icon),
         state = rememberWindowState(
             width = 750.dp,
             height = 600.dp,

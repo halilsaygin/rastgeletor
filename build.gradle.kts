@@ -1,7 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
-    kotlin("jvm") version "2.1.20"
+    kotlin("multiplatform") version "2.1.20"
     id("org.jetbrains.compose") version "1.8.1"
     id("org.jetbrains.kotlin.plugin.compose") version "2.1.20"
 }
@@ -15,16 +15,35 @@ repositories {
     google()
 }
 
-dependencies {
-    implementation(compose.desktop.currentOs)
-    implementation(compose.material3)
-    implementation(compose.components.resources)
-    implementation("org.xerial:sqlite-jdbc:3.46.1.0")
+kotlin {
+    jvm("desktop")
+    
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+                implementation("org.xerial:sqlite-jdbc:3.46.1.0")
+            }
+        }
+        val desktopMain by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
+        }
+    }
+}
+
+compose.resources {
+    packageOfResClass = "com.rastgeletor"
 }
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "Rastgeletor"
 
         nativeDistributions {
             targetFormats(TargetFormat.Deb, TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.AppImage)
@@ -38,7 +57,7 @@ compose.desktop {
             }
 
             linux {
-                iconFile.set(project.file("src/main/resources/app_icon.png"))
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
                 packageName = "rastgeletor"
                 debMaintainer = "hllsygn357@hotmail.com"
                 menuGroup = "Education"
@@ -46,7 +65,7 @@ compose.desktop {
             }
 
             windows {
-                iconFile.set(project.file("src/main/resources/app_icon.ico"))
+                iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon_win.ico"))
                 menuGroup = "Rastgeletor"
                 perUserInstall = true
                 shortcut = true
@@ -57,10 +76,6 @@ compose.desktop {
     }
 }
 
-kotlin {
-    jvmToolchain(21)
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "21"
 }

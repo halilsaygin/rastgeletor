@@ -35,5 +35,4 @@ ogrenciler.db
 *.db
 *.sqlite
 
-# Eskiden Kalan Gereksiz Dosyalar
-build-installer.bat
+commands.txt

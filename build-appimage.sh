@@ -2,10 +2,13 @@
 set -e
 
 echo "Derleme başlatılıyor..."
+# Ensure Linux JDK is used in WSL to avoid Windows-style binaries
+export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+export PATH="$JAVA_HOME/bin:$PATH"
 ./gradlew packageReleaseAppImage
 
 APP_DIR="build/AppDir"
-SRC_APP="build/compose/binaries/main-release/app/rastgeletor"
+SRC_APP="build/compose/binaries/main-release/app/Rastgeletor"
 
 echo "AppDir hazırlanıyor..."
 rm -rf "$APP_DIR"
@@ -33,14 +36,15 @@ EOF
 chmod +x "$APP_DIR/AppRun"
 
 # Desktop Entry (geliştirilmiş)
-cat << 'EOF' > "$APP_DIR/rastgeletor.desktop"
+# Filename should match StartupWMClass for best compatibility with GNOME
+cat << 'EOF' > "$APP_DIR/Rastgeletor.desktop"
 [Desktop Entry]
 Type=Application
 Name=Rastgeletor
 GenericName=Student Selector
 Comment=Öğrenci Seçme ve Gruplandırma Aracı
-Exec=rastgeletor
-Icon=rastgeletor
+Exec=Rastgeletor
+Icon=Rastgeletor
 Categories=Education;
 Keywords=student;random;selection;grouping;education;
 StartupNotify=true
@@ -52,14 +56,14 @@ MimeType=
 EOF
 
 # İkonları çoğalt (PNG olarak)
-cp "src/main/resources/app_icon.png" "$APP_DIR/usr/share/icons/hicolor/512x512/apps/rastgeletor.png"
-cp "src/main/resources/app_icon.png" "$APP_DIR/usr/share/pixmaps/rastgeletor.png"
-cp "src/main/resources/app_icon.png" "$APP_DIR/rastgeletor.png"
+cp "src/commonMain/composeResources/drawable/app_icon.png" "$APP_DIR/usr/share/icons/hicolor/512x512/apps/Rastgeletor.png"
+cp "src/commonMain/composeResources/drawable/app_icon.png" "$APP_DIR/usr/share/pixmaps/Rastgeletor.png"
+cp "src/commonMain/composeResources/drawable/app_icon.png" "$APP_DIR/Rastgeletor.png"
 
 # .DirIcon olarak PNG kullan (en yüksek kalite)
-cp "src/main/resources/app_icon.png" "$APP_DIR/.DirIcon"
+cp "src/commonMain/composeResources/drawable/app_icon.png" "$APP_DIR/.DirIcon"
 
 echo "AppImage paketleniyor..."
-appimagetool "$APP_DIR" rastgeletor-1.0.0-x86_64.AppImage || echo "appimagetool hatası: $?"
+appimagetool "$APP_DIR" Rastgeletor-1.0.0-x86_64.AppImage || echo "appimagetool hatası: $?"
 
 echo "Başarıyla tamamlandı!"
