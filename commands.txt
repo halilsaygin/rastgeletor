@@ -51,7 +51,16 @@ Taşınabilir dizin (kurulum gerektirmez):
 WSL'de AppImage oluşturmak için:
 cd /mnt/d/PROJELER/Java_Projeler/Rastgeletor
 ./build-appimage.sh
-çalıştırmak için: ./rastgeletor-1.0.0-x86_64.AppImage --appimage-extract-and-run
+çalıştırmak için: ./Rastgeletor-1.0.0-x86_64.AppImage
+
+Pardus ETAP 23'te sorun yaşarsanız:
+  DISPLAY=:0 ./Rastgeletor-1.0.0-x86_64.AppImage
+  veya
+  GDK_BACKEND=x11 ./Rastgeletor-1.0.0-x86_64.AppImage
+
+Log dosyaları: ~/.local/share/Rastgeletor/logs/
+  - launch_*.log  : Başlatma ve ortam bilgileri
+  - rastgeletor_*.log : Uygulama içi loglar
 
 Debian paketini kurmak için:
 ./gradlew packageReleaseDeb

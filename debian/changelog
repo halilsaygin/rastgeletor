@@ -1,0 +1,7 @@
+rastgeletor (2.1.0) stable; urgency=medium
+
+  * İlk resmi Debian paketi sürümü
+  * Öğrenci seçme ve gruplama özellikleri
+  * SQLite veritabanı entegrasyonu
+
+ -- hllsygn <hllsygn357@hotmail.com>  Thu, 11 Jun 2026 00:00:00 +0300

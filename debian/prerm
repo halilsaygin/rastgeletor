@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    remove|purge)
+        # Uygulama veri dizinini temizleme (kullanıcı verisi korunur)
+        # ~/.local/share/Rastgeletor dizinine dokunulmaz
+        :
+        ;;
+esac
+
+exit 0

@@ -12,8 +12,14 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import java.awt.Taskbar
-import java.awt.desktop.UserSessionEvent
+import java.io.File
+import java.io.PrintStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.logging.FileHandler
+import java.util.logging.Level
+import java.util.logging.Logger
+import java.util.logging.SimpleFormatter
 
 private val AppColorScheme = lightColorScheme(
     primary = Color.Black,
@@ -33,38 +39,118 @@ private val AppColorScheme = lightColorScheme(
     onErrorContainer = Color(0xFF8B0000)
 )
 
-fun main() = application {
-    // Set application name for Linux window managers and taskbar
-    System.setProperty("apple.awt.application.name", "Rastgeletor")
-    System.setProperty("awt.useSystemAAFontSettings", "on")
-    // This helps some Linux WMs to correctly identify the app name and class
-    System.setProperty("sun.java2d.wm.classname", "Rastgeletor")
-    System.setProperty("sun.awt.wm.classname", "Rastgeletor")
-    
-    // Try to set the application name via Toolkit if available
-    try {
-        val toolkit = java.awt.Toolkit.getDefaultToolkit()
-        val desktop = java.awt.Desktop.getDesktop()
-        // This helps with some Linux WMs
-        System.setProperty("java.awt.headless", "false")
-    } catch (e: Exception) {
-        // Ignore if not available
+/** Uygulama log dizinini döner ve oluşturur. */
+fun getLogDir(): File {
+    val userHome = System.getProperty("user.home")
+    val logDir = File(
+        System.getenv("XDG_DATA_HOME") ?: "$userHome/.local/share",
+        "Rastgeletor/logs"
+    )
+    logDir.mkdirs()
+    return logDir
+}
+
+/** Dosya tabanlı loglama sistemini başlatır. stdout/stderr de dosyaya yönlendirilir. */
+fun setupLogging(): Logger {
+    val logDir = getLogDir()
+    val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"))
+    val logFile = File(logDir, "rastgeletor_$timestamp.log")
+
+    // java.util.logging ile dosya logger
+    val logger = Logger.getLogger("Rastgeletor")
+    logger.level = Level.ALL
+
+    val fileHandler = FileHandler(logFile.absolutePath, true)
+    fileHandler.formatter = SimpleFormatter()
+    fileHandler.level = Level.ALL
+    logger.addHandler(fileHandler)
+    logger.useParentHandlers = false
+
+    // stdout ve stderr'i de aynı dosyaya yönlendir
+    val logStream = PrintStream(logFile.outputStream().also {}, true, "UTF-8")
+    System.setOut(logStream)
+    System.setErr(logStream)
+
+    logger.info("=== Rastgeletor başlatıldı: $timestamp ===")
+    logger.info("OS: ${System.getProperty("os.name")} ${System.getProperty("os.version")}")
+    logger.info("JVM: ${System.getProperty("java.version")} (${System.getProperty("java.vendor")})")
+    logger.info("Arch: ${System.getProperty("os.arch")}")
+    logger.info("Log dosyası: ${logFile.absolutePath}")
+
+    // DISPLAY ve Wayland ortam değişkenlerini logla
+    logger.info("DISPLAY: ${System.getenv("DISPLAY") ?: "(yok)"}")
+    logger.info("WAYLAND_DISPLAY: ${System.getenv("WAYLAND_DISPLAY") ?: "(yok)"}")
+    logger.info("XDG_SESSION_TYPE: ${System.getenv("XDG_SESSION_TYPE") ?: "(yok)"}")
+    logger.info("XDG_CURRENT_DESKTOP: ${System.getenv("XDG_CURRENT_DESKTOP") ?: "(yok)"}")
+    logger.info("GTK_THEME: ${System.getenv("GTK_THEME") ?: "(yok)"}")
+    logger.info("JAVA_HOME: ${System.getProperty("java.home")}")
+
+    // Yakalanmamış exception'ları logla
+    Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+        logger.severe("Yakalanmamış hata [${thread.name}]: ${throwable.message}")
+        throwable.printStackTrace(logStream)
     }
-    
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "Rastgeletör",
-        icon = painterResource(Res.drawable.app_icon),
-        state = rememberWindowState(
-            width = 750.dp,
-            height = 600.dp,
-            position = WindowPosition(Alignment.Center)
-        ),
-        resizable = false,
-        visible = true
-    ) {
-        MaterialTheme(colorScheme = AppColorScheme) {
-            App()
+
+    return logger
+}
+
+fun setupLinuxEnvironment(logger: Logger) {
+    val os = System.getProperty("os.name").lowercase()
+    if (!os.contains("linux")) return
+
+    logger.info("Linux/Cinnamon (X11) ortamı ayarlanıyor...")
+
+    // Font anti-aliasing — Cinnamon varsayılanıyla uyumlu
+    System.setProperty("awt.useSystemAAFontSettings", "lcd")
+    System.setProperty("swing.aatext", "true")
+
+    // WM class — Cinnamon panel ve görev yöneticisi için
+    System.setProperty("sun.java2d.wm.classname", "Rastgeletor")
+    System.setProperty("awt.appClassName", "Rastgeletor")
+
+    // XRender — Cinnamon/X11 için kararlı seçenek
+    System.setProperty("sun.java2d.xrender", "true")
+    System.setProperty("sun.java2d.opengl", "false")
+    System.setProperty("java.awt.headless", "false")
+
+    logger.info("DISPLAY: ${System.getenv("DISPLAY") ?: "(yok)"}")
+    logger.info("XDG_CURRENT_DESKTOP: ${System.getenv("XDG_CURRENT_DESKTOP") ?: "(yok)"}")
+    logger.info("Linux ortam ayarları uygulandı.")
+}
+
+fun main() {
+    val logger = setupLogging()
+
+    try {
+        setupLinuxEnvironment(logger)
+
+        logger.info("Compose Desktop penceresi açılıyor...")
+
+        application {
+            Window(
+                onCloseRequest = {
+                    logger.info("Uygulama kapatılıyor.")
+                    exitApplication()
+                },
+                title = "Rastgeletör",
+                icon = painterResource(Res.drawable.app_icon),
+                state = rememberWindowState(
+                    width = 750.dp,
+                    height = 600.dp,
+                    position = WindowPosition(Alignment.Center)
+                ),
+                resizable = false,
+                visible = true
+            ) {
+                MaterialTheme(colorScheme = AppColorScheme) {
+                    App()
+                }
+            }
         }
+
+    } catch (e: Exception) {
+        logger.severe("Kritik hata: ${e.message}")
+        e.printStackTrace()
+        throw e
     }
 }

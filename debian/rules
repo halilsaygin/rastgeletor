@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+# debian/rules - Rastgeletor Debian paket derleme kuralları
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# Gradle ile .deb oluştur
+	./gradlew packageDeb
+
+override_dh_auto_install:
+	# Gradle çıktısını paket dizinine kopyala
+	install -d debian/rastgeletor/usr/lib/rastgeletor
+	install -d debian/rastgeletor/usr/bin
+	install -d debian/rastgeletor/usr/share/applications
+	install -d debian/rastgeletor/usr/share/icons/hicolor/256x256/apps
+	install -d debian/rastgeletor/usr/share/doc/rastgeletor
+	# Uygulama dosyaları
+	cp -r build/compose/binaries/main/deb/rastgeletor_2.1.0_amd64.deb debian/rastgeletor/ || true
+
+override_dh_auto_test:
+	# Test adımını atla

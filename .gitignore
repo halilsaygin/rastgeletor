@@ -17,22 +17,31 @@ build/
 .project
 bin/
 
-# İşletim Sistemi Bağımlılıkları ve Çöpler
+# İşletim Sistemi
 .DS_Store
 Thumbs.db
-*.log
-ErrorLog.txt
 
-# Derleme Çıktıları
+# Log dosyaları
+*.log
+output.log
+
+# Derleme Çıktıları (binary dağıtım dosyaları)
 *.AppImage
 *.exe
 *.msi
 *.deb
 *.rpm
+squashfs-root/
 
-# Veritabanı ve Çalışma Zamanı (Eski Sürümler İçin)
-ogrenciler.db
+# .deb build geçici dizini
+deb-staging/
+
+# Gradle properties yedek dosyası (build-deb.sh tarafından oluşturulur)
+gradle.properties.bak
+
+# Veritabanı (çalışma zamanı verisi)
 *.db
 *.sqlite
 
+# Geliştirici notları (kişisel)
 commands.txt

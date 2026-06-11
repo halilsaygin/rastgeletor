@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.rastgeletor"
-version = "1.0.0"
+version = "2.1.0"
 
 repositories {
     mavenCentral()
@@ -16,7 +16,9 @@ repositories {
 }
 
 kotlin {
-    jvm("desktop")
+    jvm("desktop") {
+        // JVM target configuration
+    }
     
     sourceSets {
         val commonMain by getting {
@@ -48,20 +50,23 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Deb, TargetFormat.Rpm, TargetFormat.Msi, TargetFormat.Exe, TargetFormat.AppImage)
             packageName = "Rastgeletor"
-            packageVersion = "1.0.0"
-            description = "Öğrenci Seçme ve Gruplandırma Aracı"
+            packageVersion = "2.1.0"
+            description = "Ogrenci Secme ve Gruplandirma Araci"
             vendor = "hllsygn"
             
-            buildTypes.release.proguard {
-                isEnabled.set(false)
-            }
-
             linux {
                 iconFile.set(project.file("src/commonMain/composeResources/drawable/app_icon.png"))
                 packageName = "rastgeletor"
                 debMaintainer = "hllsygn357@hotmail.com"
                 menuGroup = "Education"
                 appCategory = "Education"
+                shortcut = true
+                // Uygulama binary'si /opt/rastgeletor altına kurulur
+                installationPath = "/opt/rastgeletor"
+            }
+
+            buildTypes.release.proguard {
+                isEnabled.set(false)
             }
 
             windows {
@@ -71,11 +76,27 @@ compose.desktop {
                 shortcut = true
             }
 
-            modules("java.sql", "java.naming", "jdk.unsupported")
+            modules(
+                "java.sql",
+                "java.naming",
+                "java.logging",
+                "java.desktop",
+                "jdk.unsupported",
+                "jdk.unsupported.desktop"
+            )
         }
     }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "21"
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+// Disable JavaCompile tasks to avoid Gradle JVM toolchain JAVA_COMPILER lookup
+// on systems where the toolchain capability check fails. Kotlin compilation
+// remains enabled.
+tasks.withType<org.gradle.api.tasks.compile.JavaCompile> {
+    enabled = false
 }

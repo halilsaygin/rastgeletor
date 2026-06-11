@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Rastgeletör
+Name[tr]=Rastgeletör
+GenericName=Öğrenci Seçme Aracı
+GenericName[tr]=Öğrenci Seçme Aracı
+Comment=Sınıf öğrenci seçme ve gruplama uygulaması
+Comment[tr]=Sınıf öğrenci seçme ve gruplama uygulaması
+Exec=/opt/rastgeletor/bin/Rastgeletor
+Icon=rastgeletor
+Terminal=false
+Categories=Education;Utility;
+Keywords=öğrenci;seçim;grup;sınıf;rastgele;
+StartupWMClass=Rastgeletor
+StartupNotify=true

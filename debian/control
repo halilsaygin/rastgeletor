@@ -1,0 +1,19 @@
+Package: rastgeletor
+Version: 2.1.0
+Section: education
+Priority: optional
+Architecture: amd64
+Maintainer: hllsygn <hllsygn357@hotmail.com>
+Depends: libc6 (>= 2.17)
+Recommends: default-jre | java17-runtime
+Homepage: https://github.com/halilsaygin/rastgeletor.git
+Description: Sınıf Öğrenci Seçme ve Gruplama Aracı
+ Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış,
+ öğretmenlerin sınıf içi öğrenci seçme ve gruplama aktivitelerini
+ kolaylaştıran modern masaüstü uygulaması.
+ .
+ Özellikler:
+  - Rastgele öğrenci seçimi (eksilen/sabit liste)
+  - Otomatik grup oluşturma
+  - Cinsiyet filtresi
+  - SQLite tabanlı öğrenci yönetimi

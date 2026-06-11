@@ -56,6 +56,31 @@ Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış, öğretme
 
 ---
 
+## 📦 .deb Paketi Olarak Dağıtım (Debian/Ubuntu)
+
+Uygulama, Debian tabanlı dağıtımlarda paket yöneticisi ile kurulabilir.
+
+### Adımlar
+
+```bash
+# Betiği çalıştırılabilir yapın
+chmod +x build-deb.sh
+
+# .deb paketini derleyin ve hazırlayın
+./build-deb.sh
+
+# Oluşan paketi kurun
+sudo dpkg -i rastgeletor_2.1.0_amd64.deb
+
+# Eksik bağımlılıkları otomatik çöz (gerekirse)
+sudo apt-get install -f
+```
+
+Kurulum tamamlandığında uygulama, uygulama menüsünde **Eğitim** kategorisinde görünür.  
+Veriler `~/.local/share/Rastgeletor/ogrenciler.db` konumunda saklanır.
+
+---
+
 ## 📦 AppImage Olarak Dağıtım (Linux)
 
 Uygulamanın işletim sistemine tam uyumlu bir `.AppImage` haline getirilmesi için özel `build-appimage.sh` betiği mevcuttur. GNOME ve diğer masaüstü birimlerine (Dock) uygun yapılandırmalar içerir.
