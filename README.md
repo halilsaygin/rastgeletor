@@ -1,6 +1,6 @@
 # Rastgeletör - Sınıf Öğrenci Seçme ve Gruplama Aracı
 
-Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış, öğretmenlerin sınıf içi öğrenci seçme ve gruplama aktivitelerini kolaylaştıran modern ve kullanışlı bir masaüstü uygulamasıdır.
+Okullarda akıllı tahta (ETAP) üzerinde kullanılmak üzere tasarlanmış, öğretmenlerin sınıf içi öğrenci seçme ve gruplama aktivitelerini kolaylaştıran modern, hafif ve kullanışlı bir **Python 3 + GTK 4** masaüstü uygulamasıdır.
 
 <div align="center">
   <img src="screenshoots/rastgeletor_ekran.png" width="49%" alt="Rastgeletör Ekranı" />
@@ -11,29 +11,13 @@ Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış, öğretme
 
 ## 🎯 Özellikler
 
-- **Rastgele Öğrenci Seçimi**: Sınıftan adil ve rastgele öğrenci seçimi (Monochrome minimal arayüz)
-- **Grup Oluşturma**: İstediğiniz grup sayısına veya grup başına düşen kişi sayısına göre otomatik gruplama
-- **Cinsiyet Filtresi**: Tüm sınıf, sadece kızlar veya sadece erkekler arasından seçim
-- **Liste Modları**: Eksilen liste (seçilen öğrenci tekrar seçilmez) veya sabit liste
-- **Öğrenci Yönetimi**: Kolay öğrenci ekleme, silme ve listeleme
-
----
-
-## 📸 Uygulama Arayüzü Detayları
-
-### Seçim Ayarları Ekranı
-<div align="center">
-  <img src="screenshoots/rastgeletor_secim_ayarlari.png" width="80%" alt="Seçim Ayarları">
-</div>
-
-*Öğretmenler için hızlı ve kolay erişilebilen, göz yormayan ayarlar penceresi.*
-
-### Dinamik Grup Oluşturucu (Gruplayıcı)
-<div align="center">
-  <img src="screenshoots/gruplayici_ekrani.png" width="80%" alt="Gruplayıcı Ekranı">
-</div>
-
-*Girilen kotalara göre adil ve rastgele üretilmiş optimum sınıf grupları.*
+- **Rastgele Öğrenci Seçimi**: Sınıftan adil ve rastgele öğrenci seçimi (Minimal, akıllı tahta uyumlu arayüz).
+- **Grup Oluşturma**: İstediğiniz grup sayısına veya grup başına düşen kişi sayısına göre otomatik, dinamik gruplama.
+- **Cinsiyet Filtresi**: Tüm sınıf, sadece kızlar veya sadece erkekler arasından seçim.
+- **Liste Modları**: Eksilen liste (seçilen öğrenci listeye geri dönmez) veya sabit liste (aynı öğrenci tekrar seçilebilir).
+- **Öğrenci Yönetimi**: Kolay öğrenci ekleme, silme ve listeleme.
+- **Akıllı Tahta Optimizasyonu**: Geniş dokunmatik butonlar (IR touch uyumlu) ve klavye kısayolları.
+- **Çevrimdışı Çalışma**: İnternet gerektirmez, veriler yerel SQLite veritabanında saklanır.
 
 ---
 
@@ -42,77 +26,68 @@ Okullarda akıllı tahta üzerinden kullanılmak üzere tasarlanmış, öğretme
 ### 1- Öğrenci Listesi Oluşturma
 1. Ana ekranda "Öğrenci Listesi" butonuna tıklayıp sınıf panosuna girin.
 2. Ad soyad ve cinsiyet belirterek **"EKLE"** butonuna tıklayın.
-3. Listeyi tamamladığınızda sol üstteki okla geri dönebilir veya verileri temizleyebilirsiniz.
+3. Listeyi tamamladığınızda sol üstteki okla geri dönebilir veya dilerseniz verileri tamamen temizleyebilirsiniz.
 
 ### 2- Rastgele Öğrenci Seçme (Çekiliş)
-1. Rastgeletör panosundan **Seçim Ayarları**na tıklayın.
-2. Sabit mi yoksa Eksilen liste mantığı ile mi çekiliş yapacağınızı ve kız/erkek kısıtlamalarını belirleyin.
-3. Klavyeden **Enter** tuşuna veya ekrandaki kocaman zara (⚄) tıklayarak seçimi gerçekleştirin!
+1. Ana ekrandan **Seçim Ayarları**na tıklayın.
+2. Sabit mi yoksa Eksilen liste mantığı ile mi çekiliş yapacağınızı ve cinsiyet kısıtlamalarını belirleyin.
+3. Klavyeden **Enter** tuşuna veya ekrandaki kocaman zara (⚄) tıklayarak rastgele öğrencinizi seçin!
 
 ### 3- Grup Oluşturma
-1. Sağ üstte yer alan "Gruplayıcı" sekmesine geçin.
-2. "Yeni Gruplandırma" diyerek sınıfı kaça böleceğinizi belirleyin.
-3. Sağ ve sol oklarla oluşan otomatik grupları inceleyin.
+1. Sağ üstte yer alan "Gruplayıcı" butonuna tıklayın.
+2. "Yeni Gruplandırma" diyerek sınıfı kaça böleceğinizi (kriterleri) belirleyin.
+3. Sağ ve sol ok tuşlarına basarak ya da ekrandaki oklara tıklayarak oluşturulan otomatik grupları inceleyin.
 
 ---
 
-## 📦 .deb Paketi Olarak Dağıtım (Debian/Ubuntu)
+## 🛠 Geliştiriciler İçin (Kurulum ve Çalıştırma)
 
-Uygulama, Debian tabanlı dağıtımlarda paket yöneticisi ile kurulabilir.
+Proje, Kotlin tabanlı eski altyapıdan tamamen **Python 3 ve GTK 4** kullanılarak native Linux ekosistemine göç etmiştir.
 
-### Adımlar
+**Gereksinimler (Ubuntu/Pardus/Arch):**
+- Python 3.10+
+- GTK 4 & libadwaita
+- PyGObject (python3-gi)
 
+**Projeyi Geliştirme Ortamında Çalıştırma:**
 ```bash
-# Betiği çalıştırılabilir yapın
-chmod +x build-deb.sh
+# Sanal ortam oluşturup aktif edin
+python3 -m venv --system-site-packages .venv
+source .venv/bin/activate
 
-# .deb paketini derleyin ve hazırlayın
-./build-deb.sh
+# Uygulamayı çalıştırın
+PYTHONPATH=src python3 -m app.main
+```
 
-# Oluşan paketi kurun
-sudo dpkg -i rastgeletor_2.1.0_amd64.deb
+---
 
-# Eksik bağımlılıkları otomatik çöz (gerekirse)
+## 📦 Dağıtım (Pardus ETAP ve Linux)
+
+Uygulama hem Debian paketi (`.deb`) hem de taşınabilir (portable) `AppImage` formatında kolayca derlenebilir. Otomatik paketleme betikleri `packaging` dizini içerisinde yer alır.
+
+### .deb Paketi Üretme (Debian/Ubuntu/Pardus ETAP)
+```bash
+./packaging/deb/build_deb.sh
+
+# Oluşan paketi kurmak için:
+sudo dpkg -i rastgeletor_2.2.0_all.deb
 sudo apt-get install -f
 ```
 
-Kurulum tamamlandığında uygulama, uygulama menüsünde **Eğitim** kategorisinde görünür.  
-Veriler `~/.local/share/Rastgeletor/ogrenciler.db` konumunda saklanır.
+### AppImage Üretme (Evrensel Linux)
+```bash
+./packaging/appimage/build_appimage.sh
+
+# Oluşan AppImage'ı doğrudan çalıştırmak için:
+./Rastgeletor-2.2.0-x86_64.AppImage
+```
 
 ---
 
-## 📦 AppImage Olarak Dağıtım (Linux)
-
-Uygulamanın işletim sistemine tam uyumlu bir `.AppImage` haline getirilmesi için özel `build-appimage.sh` betiği mevcuttur. GNOME ve diğer masaüstü birimlerine (Dock) uygun yapılandırmalar içerir.
-
-### Adımlar
-
-```bash
-# Proje dizininde özel betiği çalıştırarak imajı derleyin
-chmod +x build-appimage.sh
-./build-appimage.sh
-
-# Oluşan AppImage'ı doğrudan çalıştırın
-./Rastgeletor-1.0.0-x86_64.AppImage
-```
-> **Not:** Sisteminizde FUSE yüklü değilse alternatif olarak `./Rastgeletor-1.0.0-x86_64.AppImage --appimage-extract-and-run` bayrağı ile çalıştırabilirsiniz.
-
-## 🛠 Geliştiriciler İçin
-
-**Gereksinimler:**
-- JDK 21+
-- Gradle 8.5+
-
-**Projeyi Çalıştırma:**
-```bash
-# Kodu direkt JetBrains Compose Test ortamında çalıştırır
-gradle run
-```
-
 ## 🗄️ Veritabanı Mimarisi
-Uygulama `SQLite` kullanır. Standart best-practice politikasını güderek uygulamanın kurulu olduğu yere rastgele çöp dosya bırakmaz. Veriler işletim sisteminin kendisine ait "Application Data" dizininde güvenle barınır:
-- **Windows:** `%APPDATA%\Rastgeletor\ogrenciler.db`
-- **Linux (WSL):** `~/.local/share/Rastgeletor/ogrenciler.db`
+Uygulama `SQLite` kullanır. Paketleme mantığı gereği uygulamanın kurulu olduğu sistem dizinine (`/usr/share/`) değil, mevcut kullanıcının (öğretmenin) kişisel gizli klasörüne kaydedilir:
+- **Konum:** `~/.local/share/Rastgeletor/ogrenciler.db`
+Bu sayede uygulama güncellendiğinde veya silinip tekrar yüklendiğinde **öğrenci kayıtları asla kaybolmaz.**
 
 ## 🧸 İkon Katkısı
 Uygulamanın simgeleri Flaticon'dan alınmıştır.  

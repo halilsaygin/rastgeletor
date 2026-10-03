@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rastgeletor"
+version = "2.2.0"
+description = "Pardus ETAP Sınıf Öğrenci Seçme ve Gruplama Aracı (Rastgeletör)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Halil Saygın", email = "hllsygn357@hotmail.com" }
+]
+license = { text = "GPL-3.0-or-later" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: X11 Applications :: GTK",
+    "Topic :: Education",
+]
+dependencies = [
+    "PyGObject>=3.42.0",
+]
+
+[project.scripts]
+rastgeletor = "app.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

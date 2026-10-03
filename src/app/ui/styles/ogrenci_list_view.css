@@ -1,0 +1,36 @@
+/* 
+ * ogrenci_list_view.css
+ * Öğrenci listesinin görüntülendiği Gtk.ListBox satırlarının
+ * dokunmatik (tahta) uyumlu stillerini içerir.
+ */
+
+/* Liste İçerisindeki Tekil Satırlar */
+.touch-list-row {
+    color: #111111;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f2f2f2;
+    background-color: transparent;
+    transition: background-color 100ms ease;
+}
+
+.touch-list-row:hover {
+    background-color: #f9f9f9;
+}
+
+/* Satır seçili (tıkladığımızda) olduğundaki rengi */
+.touch-list-row:selected {
+    background-color: #f0f0f0;
+    color: #111111;
+}
+
+.touch-list-row:selected label {
+    font-weight: 600;
+    color: #111111;
+}
+
+/* ListBox arkaplanını sistemin koyu temasından arındırıp beyaz/şeffaf yapıyoruz */
+list, listview, listbox {
+    background-color: transparent;
+    color: #1a1a1a;
+}

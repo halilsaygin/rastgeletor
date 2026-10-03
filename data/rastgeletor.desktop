@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Rastgeletör
+GenericName=Öğrenci Seçici
+Comment=Pardus ETAP Sınıf İçi Öğrenci Seçme ve Gruplama Aracı
+Exec=rastgeletor
+Icon=rastgeletor
+Terminal=false
+Categories=Education;Utility;
+Keywords=öğrenci;rastgele;seçim;gruplama;eğitim;student;random;etap;akıllı tahta;
+StartupNotify=true
+StartupWMClass=rastgeletor
+X-GNOME-FullName=Rastgeletör Öğrenci Seçici

@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove|deconfigure)
+        # Remove generated pycache files
+        rm -rf /usr/share/rastgeletor/**/__pycache__ 2>/dev/null || true
+        ;;
+esac
+
+exit 0

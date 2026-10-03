@@ -1,0 +1,51 @@
+/* 
+ * rastgeletor_view.css
+ * İlk açılan ana ekrandaki (Rastgeletör) zar butonu, 
+ * seçilen öğrencinin devasa yazısı ve durum hapı (status pill) stillerini içerir.
+ */
+
+/* Devasa Seçilen Öğrenci İsmi */
+.selected-student-text {
+    font-size: 52px;
+    font-weight: 300;
+    color: #111111;
+}
+
+/* Ekranın ortasındaki kocaman Zar Butonu */
+.dice-button {
+    min-width: 104px;
+    min-height: 104px;
+    border-radius: 52px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    transition: transform 80ms ease;
+}
+
+.dice-button:hover {
+    background-color: #f0f0f0;
+}
+
+.dice-button:active {
+    transform: scale(0.92);
+    background-color: #e5e5e5;
+}
+
+/* Zardaki Emoji/İkonun boyutu */
+.dice-symbol {
+    font-size: 72px;
+    color: #111111;
+    line-height: 1;
+}
+
+/* "Torba boş", "Sabit Mod" gibi bilgi veren ufak kapsül yapısı */
+.status-pill {
+    background-color: #eeeeee;
+    border-radius: 24px;
+    padding: 10px 24px;
+    color: #555555;
+    font-weight: 600;
+    font-size: 14px;
+}

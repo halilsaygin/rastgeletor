@@ -1,0 +1,36 @@
+/* 
+ * gruplandirma_view.css
+ * Öğrencilerin 2'li 3'lü gruplara ayrıldığı ekrandaki 
+ * grup arası geçiş butonları (sağ-sol) ve öğrenci kartı stillerini içerir.
+ */
+
+/* Sağ ve Sol ok butonları (Gruplar arası geçiş) */
+.group-nav-btn {
+    min-width: 64px;
+    min-height: 64px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    border: 1.5px solid #dddddd;
+    color: #111111;
+    font-size: 24px;
+}
+
+.group-nav-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #bbbbbb;
+}
+
+.group-nav-btn:active {
+    background-color: #e5e5e5;
+}
+
+/* Grubun içerisindeki her bir öğrencinin gösterildiği beyaz/gri kutucuk */
+.group-item-card {
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    padding: 16px 22px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #111111;
+    border: 1px solid #eeeeee;
+}

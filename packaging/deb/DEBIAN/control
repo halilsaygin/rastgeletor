@@ -1,0 +1,20 @@
+Package: rastgeletor
+Version: 2.2.0
+Section: education
+Priority: optional
+Architecture: all
+Maintainer: halilsaygin <hllsygn357@hotmail.com>
+Depends: python3 (>= 3.10), python3-gi (>= 3.42), gir1.2-gtk-4.0 (>= 4.8)
+Recommends: gir1.2-adw-1
+Homepage: https://github.com/halilsaygin/rastgeletor
+Description: Ögrenci Seçme ve Gruplama Aracı
+ Okullarda akilli tahta (ETAP) uzerinde kullanilmak uzere tasarlanmis,
+ ogretmenlerin sinif ici ogrenci secme ve gruplama aktivitelerini
+ kolaylastiran yuksek performansli, hafif Python 3 + GTK 4 uygulamasi.
+ .
+ Ozellikler:
+  - Rastgele ogrenci secimi (eksilen / sabit liste)
+  - Dinamik grup olusturma
+  - Kiz / Erkek cinsiyet filtreleme
+  - Dokunmatik ekran ve akilli tahta (IR touch) optimizasyonu
+  - SQLite tabanli cevrimdisi yerel veri tabani
